@@ -1,0 +1,44 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background-color: #f4f4f4;
+}
+
+header, footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.container {
+    padding: 20px;
+}
+
+.card {
+    background: white;
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px gray;
+}
+
+.caro {
+    border: 2px solid red;
+}
+
+.card img {
+    width: 20%;
+    border-radius: 50px;
+}
+.card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
