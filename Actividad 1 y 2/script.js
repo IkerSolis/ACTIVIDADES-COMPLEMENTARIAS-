@@ -144,12 +144,9 @@ function cargarCatalogo() {
         const precio = document.createElement("p");
         precio.textContent = "$" + servicio.precio;
 
-        const img = document.createElement("img");
-
         card.appendChild(nombre);
         card.appendChild(desc);
         card.appendChild(precio);
-        card.appendChild(img);
 
         container.appendChild(card);
     });

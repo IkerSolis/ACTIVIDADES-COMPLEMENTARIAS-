@@ -8,32 +8,14 @@
 <body>
 
 <div id="app">
-    <header>
-        <h1>Servicios de Ingeniería en Sistemas</h1>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="alta.html">Agregar Servicio</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h2>Agregar Servicio</h2>
-        <form @submit.prevent="guardar">
-            <input v-model="nombre" placeholder="Nombre del servicio">
-            <input v-model="desc" placeholder="Descripción">
-            <input v-model.number="precio" type="number" placeholder="Precio">
-            <button type="submit">Guardar</button>
-            <p style="color:red">{{ error }}</p>
-        </form>
+   <div id="app">
+        <app-header></app-header>
+        <div class="container">
+            <agregar-servicio></agregar-servicio>   
+        <app-footer></app-footer>
     </div>
-    <footer>
-        © 2026 - Stardust Crusaders
-    </footer>
-</div>
-
-<script src="https://unpkg.com/vue@3"></script>
-<script src="script.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

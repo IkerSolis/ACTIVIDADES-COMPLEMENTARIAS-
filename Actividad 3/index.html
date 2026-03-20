@@ -5,38 +5,15 @@
     <title>Inicio</title>
     <link rel="stylesheet" href="styles.css">
 </head>
-<body>
-
-<div id="app">
-    <header>
-        <h1>Servicios de Ingeniería en Sistemas</h1>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="alta.html">Agregar Servicio</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <p>Somos un equipo de ingenieros en sistemas especializados en desarrollo de soluciones tecnológicas.</p>
-        <h2>Nuestro Equipo</h2>
-        <div class="card" v-for="persona in integrantes" :key="persona.nombre">
-            <img :src="persona.img">
-
-            <div>
-                <h3>{{ persona.nombre }}</h3>
-                <p>Rol: {{ persona.rol }}</p>
-                <p>Experiencia: {{ persona.experiencia }}</p>
+    <body>
+        <div id="app">
+            <app-header></app-header>
+            <div class="container">
+                <equipo-lista :integrantes="integrantes"></equipo-lista>
             </div>
+            <app-footer></app-footer>
         </div>
-    </div>
-    <footer>
-        © 2026 - Stardust Crusaders
-    </footer>
-</div>
-
-<script src="https://unpkg.com/vue@3"></script>
-<script src="script.js"></script>
-
-</body>
+        <script src="https://unpkg.com/vue@3"></script>
+        <script src="script.js"></script>
+    </body>
 </html>

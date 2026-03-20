@@ -6,40 +6,15 @@
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-
-<div id="app">
-
-    <header>
-        <h1>Servicios de Ingeniería en Sistemas</h1>
-        <nav>
-            <a href="index.html">Inicio</a>
-            <a href="catalogo.html">Catálogo</a>
-            <a href="alta.html">Agregar Servicio</a>
-        </nav>
-    </header>
-
-    <div class="container">
-        <h2>Catálogo de Servicios</h2>
-        <div class="card"
-             v-for="servicio in servicios"
-             :key="servicio.nombre"
-             :class="{ caro: servicio.precio > 1000 }">
-            <div>
-                <h3>{{ servicio.nombre }}</h3>
-                <p>{{ servicio.desc }}</p>
-                <p>$ {{ servicio.precio }}</p>
-            </div>
+    <div id="app">
+        <app-header></app-header>
+        <div class="container">
+           <servicios-lista :servicios="servicios"></servicios-lista>
         </div>
+        <app-footer></app-footer>
     </div>
-
-    <footer>
-        © 2026 - Stardust Crusaders
-    </footer>
-
-</div>
-
-<script src="https://unpkg.com/vue@3"></script>
-<script src="script.js"></script>
+    <script src="https://unpkg.com/vue@3"></script>
+    <script src="script.js"></script>
 
 </body>
 </html>

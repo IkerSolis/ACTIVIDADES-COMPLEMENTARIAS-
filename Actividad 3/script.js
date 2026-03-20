@@ -1,4 +1,4 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", () => { 
 
     const pagina = window.location.pathname;
 
@@ -30,37 +30,67 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     ];
 
-    if (pagina.includes("index")) {
-        Vue.createApp({
-            data() {
-                return {
-                    integrantes: integrantesBase
-                }
-            }
-        }).mount("#app");
-    }
+    // FUNCIÓN PARA LOS COMPONENTES (header, footer, lista de integrantes, servicios y agregar servicio)
+    function registrarComponentes(app) {
+        app.component('app-header', {
+            template: `
+                <header>
+                    <h1>Servicios de Ingeniería en Sistemas</h1>
+                    <nav>
+                        <a href="index.html">Inicio</a>
+                        <a href="catalogo.html">Catálogo</a>
+                        <a href="alta.html">Agregar Servicio</a>
+                    </nav>
+                </header>
+            `
+        });
 
-    if (pagina.includes("catalogo")) {
-        Vue.createApp({
-            data() {
-                return {
-                    servicios: []
-                }
-            },
-            methods: {
-                obtenerServicios() {
-                    let extra = JSON.parse(localStorage.getItem("servicios")) || [];
-                    return serviciosBase.concat(extra);
-                }
-            },
-            mounted() {
-                this.servicios = this.obtenerServicios();
-            }
-        }).mount("#app");
-    }
+        app.component('app-footer', {
+            template: `
+                <footer>
+                    © 2026 - Stardust Crusaders
+                </footer>
+            `
+        });
 
-    if (pagina.includes("alta")) {
-        Vue.createApp({
+        app.component('equipo-lista', {
+            props: ['integrantes'],
+            template: `
+                <div class="container">
+                    <p>Somos un equipo de ingenieros en sistemas especializados en desarrollo de soluciones tecnológicas.</p>
+                    <h2>Nuestro Equipo</h2>
+                    <div class="card" v-for="persona in integrantes" :key="persona.nombre">
+                        <img :src="persona.img">
+                        <div>
+                            <h3>{{ persona.nombre }}</h3>
+                            <p>Rol: {{ persona.rol }}</p>
+                            <p>Experiencia: {{ persona.experiencia }}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        });
+
+        app.component('servicios-lista', {
+            props: ['servicios'],
+            template: `
+                <div class="container">
+                    <h2>Catálogo de Servicios</h2>
+                    <div class="card"
+                        v-for="servicio in servicios"
+                        :key="servicio.nombre"
+                        :class="{ caro: servicio.precio > 1000 }">
+                        <div>
+                            <h3>{{ servicio.nombre }}</h3>
+                            <p>{{ servicio.desc }}</p>
+                            <p>$ {{ servicio.precio }}</p>
+                        </div>
+                    </div>
+                </div>
+            `
+        });
+
+        app.component('agregar-servicio', {
             data() {
                 return {
                     nombre: "",
@@ -87,21 +117,101 @@ document.addEventListener("DOMContentLoaded", () => {
                         desc: this.desc,
                         precio: this.precio
                     };
-
                     let lista = JSON.parse(localStorage.getItem("servicios")) || [];
-
                     lista.push(nuevoServicio);
-
                     localStorage.setItem("servicios", JSON.stringify(lista));
-
                     this.error = "Servicio guardado correctamente";
+                    setTimeout(() => {
+                        window.location.href = "catalogo.html";
+                    }, 1000);
+                }
+            },
+            template: `
+                <div class="container">
+                    <h2>Agregar Servicio</h2>
+                    <form @submit.prevent="guardar">
+                        <input v-model="nombre" placeholder="Nombre del servicio">
+                        <input v-model="desc" placeholder="Descripción">
+                        <input v-model.number="precio" type="number" placeholder="Precio">
+                        <button type="submit">Guardar</button>
+                        <p style="color:red">{{ error }}</p>
+                    </form>
+                </div>
+            `
+        });
+    }
+    // INDEX 
+    if (pagina.includes("index")) {
+        const app = Vue.createApp({
+            data() {
+                return {
+                    integrantes: integrantesBase
+                }
+            }
+        });
 
+        registrarComponentes(app);
+        app.mount("#app");
+    }
+    //  CATALOGO 
+    if (pagina.includes("catalogo")) {
+        const app = Vue.createApp({
+            data() {
+                return {
+                    servicios: []
+                }
+            },
+            methods: {
+                obtenerServicios() {
+                    let extra = JSON.parse(localStorage.getItem("servicios")) || [];
+                    return serviciosBase.concat(extra);
+                }
+            },
+            mounted() {
+                this.servicios = this.obtenerServicios();
+            }
+        });
+
+        registrarComponentes(app);
+        app.mount("#app");
+    }
+    //  ALTA 
+    if (pagina.includes("alta")) {
+        const app = Vue.createApp({
+            data() {
+                return {
+                    nombre: "",
+                    desc: "",
+                    precio: null,
+                    error: ""
+                }
+            },
+            methods: {
+                guardar() {
+                    if (!this.nombre || !this.desc || !this.precio) {
+                        this.error = "Por favor, completa todos los campos";
+                        return;
+                    }
+                    if (this.precio <= 0) {
+                        this.error = "El precio debe ser mayor a 0";
+                        return;
+                    }
+                    const nuevoServicio = {
+                        nombre: this.nombre,
+                        desc: this.desc,
+                        precio: this.precio
+                    };
+                    let lista = JSON.parse(localStorage.getItem("servicios")) || [];
+                    lista.push(nuevoServicio);
+                    localStorage.setItem("servicios", JSON.stringify(lista));
+                    this.error = "Servicio guardado correctamente";
                     setTimeout(() => {
                         window.location.href = "catalogo.html";
                     }, 1000);
                 }
             }
-        }).mount("#app");
+        });
+        registrarComponentes(app);
+        app.mount("#app");
     }
-
 });
