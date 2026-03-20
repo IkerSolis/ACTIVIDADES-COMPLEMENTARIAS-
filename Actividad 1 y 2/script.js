@@ -128,7 +128,7 @@ function cargarCatalogo() {
 
     obtenerServicios().forEach(servicio => {
         const card = document.createElement("div");
-        card.className = "card";
+        card.className = "cardServicio";
 
         // Para el precio > 1000
         if (servicio.precio > 1000) {

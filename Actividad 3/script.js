@@ -76,7 +76,7 @@ document.addEventListener("DOMContentLoaded", () => {
             template: `
                 <div class="container">
                     <h2>Catálogo de Servicios</h2>
-                    <div class="card"
+                    <div class="cardServicio"
                         v-for="servicio in servicios"
                         :key="servicio.nombre"
                         :class="{ caro: servicio.precio > 1000 }">

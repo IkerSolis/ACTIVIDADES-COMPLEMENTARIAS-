@@ -1,7 +1,7 @@
 body {
     font-family: Arial;
     margin: 0;
-    background-color: #f4f4f4;
+    background-color: #ffffff;
 }
 
 header, footer {
@@ -21,8 +21,16 @@ nav a {
     padding: 20px;
 }
 
+.cardServicio {
+    background: rgb(0, 255, 30);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px gray;
+}
+
 .card {
-    background: white;
+    background: rgb(97, 56, 245);
     padding: 15px;
     margin: 10px;
     border-radius: 10px;
@@ -30,6 +38,7 @@ nav a {
 }
 
 .caro {
+    background-color: rgb(255, 0, 0);
     border: 2px solid red;
 }
 
