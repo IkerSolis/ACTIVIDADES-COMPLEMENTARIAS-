@@ -1,0 +1,53 @@
+body {
+    font-family: Arial;
+    margin: 0;
+    background-color: #ffffff;
+}
+
+header, footer {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 10px;
+}
+
+nav a {
+    color: white;
+    margin: 10px;
+    text-decoration: none;
+}
+
+.container {
+    padding: 20px;
+}
+
+.cardServicio {
+    background: rgb(0, 255, 30);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px gray;
+}
+
+.card {
+    background: rgb(97, 56, 245);
+    padding: 15px;
+    margin: 10px;
+    border-radius: 10px;
+    box-shadow: 0 0 5px gray;
+}
+
+.caro {
+    background-color: rgb(255, 0, 0);
+    border: 2px solid red;
+}
+
+.card img {
+    width: 20%;
+    border-radius: 50px;
+}
+.card {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}

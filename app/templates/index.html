@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Inicio - Servicios</title>
+    
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+    <div id="app">
+        
+        <script src="{% static 'js/script.js' %}"></script>
+        
+        <script>
+        document.addEventListener("DOMContentLoaded", () => {
+            cargarIndex(); 
+        });
+        </script>
+    </div>
+</body>
+</html>
