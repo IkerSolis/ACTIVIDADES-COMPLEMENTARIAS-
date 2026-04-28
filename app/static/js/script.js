@@ -125,7 +125,7 @@ function cargarCatalogo() {
     const container = document.createElement("div");
     container.className = "container";
 
-    obtenerServicios().forEach(servicio => {
+        servicios.forEach(servicio => {
         const card = document.createElement("div");
         card.className = "cardServicio";
 
