@@ -12,9 +12,11 @@
         
         <script src="{% static 'js/script.js' %}"></script>
         
+        {{ integrantes|json_script:"integrantes-data" }}
         <script>
         document.addEventListener("DOMContentLoaded", () => {
-            cargarIndex(); 
+            const dbIntegrantes = JSON.parse(document.getElementById('integrantes-data').textContent);
+            cargarIndex(dbIntegrantes); 
         });
         </script>
     </div>

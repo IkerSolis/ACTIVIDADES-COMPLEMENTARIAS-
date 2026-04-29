@@ -13,9 +13,11 @@
 
         <script src="{% static 'js/script.js' %}"></script>
 
+        {{ nuevos_servicios|json_script:"servicios-data" }}
         <script>
         document.addEventListener("DOMContentLoaded", () => {
-            cargarCatalogo(); 
+            const dbServicios = JSON.parse(document.getElementById('servicios-data').textContent);
+            cargarCatalogo(dbServicios); 
         });
         </script>
 

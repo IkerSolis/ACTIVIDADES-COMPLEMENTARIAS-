@@ -1,32 +1,4 @@
-// Arreglo con todos los servicios
-const servicios = [
-    {nombre: "Desarrollo Web", desc: "Páginas modernas", precio: 1500},
-    {nombre: "Mantenimiento PC", desc: "Limpieza y optimización", precio: 800},
-    {nombre: "Redes", desc: "Instalación de redes", precio: 2000},
-    {nombre: "Soporte Técnico", desc: "Asistencia remota", precio: 500},
-    {nombre: "Base de Datos", desc: "Diseño y gestión", precio: 1800},
-    {nombre: "Seguridad", desc: "Protección de sistemas", precio: 2500},
-    {nombre: "Apps Móviles", desc: "Desarrollo Android", precio: 3000},
-    {nombre: "Consultoría", desc: "Asesoría IT", precio: 1200},
-    {nombre: "Cloud", desc: "Servicios en la nube", precio: 2200},
-    {nombre: "Automatización", desc: "Scripts y bots", precio: 1700}
-];
-
-// Arreglo con todos los integrantes
-const integrantes = [
-    {
-        img: "https://i.pinimg.com/736x/7c/6b/81/7c6b817390660204ea133247223c08f4.jpg",
-        nombre: "Oscar Alejandro Arias Corona",
-        rol: "Frontend Developer",
-        experiencia: "Experiencia con HTML, CSS y JavaScript"
-    },
-    {
-        img: "https://i.pinimg.com/736x/3b/5e/10/3b5e10a1a4cfd2640f738329c9a62407.jpg",
-        nombre: "Iker Solís Ramírez",
-        rol: "Backend Developer",
-        experiencia: "Experiencia con PHP y bases de datos MySQL"
-    }
-];
+// Arreglo con todos los integrantes (Removido, ahora se obtiene desde BD)
 
 // Header y navegación (RUTAS CORREGIDAS)
 function crearHeader() {
@@ -67,7 +39,7 @@ function crearFooter() {
 }
 
 // INDEX
-function cargarIndex() {
+function cargarIndex(listaIntegrantes) {
     const app = document.getElementById("app");
 
     app.appendChild(crearHeader());
@@ -84,7 +56,7 @@ function cargarIndex() {
     titulo.textContent = "Nuestro Equipo";
     container.appendChild(titulo);
 
-    integrantes.forEach(persona => {
+    listaIntegrantes.forEach(persona => {
         const card = document.createElement("div");
         card.className = "card";
 
@@ -117,7 +89,7 @@ function cargarIndex() {
 }
 
 // CATÁLOGO
-function cargarCatalogo() {
+function cargarCatalogo(listaServicios) {
     const app = document.getElementById("app");
 
     app.appendChild(crearHeader());
@@ -125,7 +97,7 @@ function cargarCatalogo() {
     const container = document.createElement("div");
     container.className = "container";
 
-        servicios.forEach(servicio => {
+        listaServicios.forEach(servicio => {
         const card = document.createElement("div");
         card.className = "cardServicio";
 
@@ -137,7 +109,7 @@ function cargarCatalogo() {
         nombre.textContent = servicio.nombre;
 
         const desc = document.createElement("p");
-        desc.textContent = servicio.desc;
+        desc.textContent = servicio.descripcion;
 
         const precio = document.createElement("p");
         precio.textContent = "$" + servicio.precio;
